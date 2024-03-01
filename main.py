@@ -11,8 +11,15 @@ class StopCandidateException(Exception):
     pass
 
 
-API = os.environ["API_KEY"]
-print(API)
+try:
+    API = os.environ["API_KEY"]
+except KeyError:
+    print("Error: API_KEY not found in environment variables.")
+    API = None  # Set a default value or handle the missing API key case appropriately
+
+if API:
+    print(API)
+    genai.configure(api_key=API)
 genai.configure(api_key=API)
 
 # Set up the model
