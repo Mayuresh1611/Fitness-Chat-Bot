@@ -11,7 +11,7 @@ class StopCandidateException(Exception):
     pass
 
 
-API = os.environ.get("GEMINI_API_KEY")
+API = os.environ[GEMINI_API_KEY]
 print(API)
 genai.configure(api_key=API)
 
