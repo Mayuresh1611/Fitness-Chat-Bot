@@ -10,7 +10,7 @@ class BlockedPromptException(Exception):
 class StopCandidateException(Exception):
     pass
 
-API = os.environ.get("API_KEY")
+API = st.secrets["GEMINI_API_KEY"]
 
 print(API)
 genai.configure(api_key=API)
