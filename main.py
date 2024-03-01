@@ -2,8 +2,6 @@ import google.generativeai as genai
 import google.generativeai.generative_models as gen
 import streamlit as st
 import os
-import time 
-import stopwatch as sw
 
 
 
@@ -14,17 +12,9 @@ class BlockedPromptException(Exception):
 class StopCandidateException(Exception):
     pass
 
-with open('.env') as f:
-    for line in f:
-        if line.strip() and not line.startswith('#'):
-            print("yess")
-            key, value = line.strip().split('=', 1)     
-            os.environ[key] = value
 
-
-api_key = os.environ.get("GEMINI_API")
-print(api_key)
-genai.configure(api_key="AIzaSyDeCGXK4RGGC79mmXrAOk26Fhx6qiYWjqM")
+API = os.environ.get("GEMINI_API_KEY")
+genai.configure(api_key=API)
 
 # Set up the model
 generation_config = {
@@ -66,11 +56,9 @@ for message in st.session_state.messages:
 # Display initial model message
 # st.markdown(chat_bg[1]['parts'][0])
         
-timer = sw.Timer()
 
 if prompt := st.chat_input("user: "):
     
-    timer.start()
     st.chat_message("user").markdown(prompt)
     st.session_state.messages.append({"role":"user" , "parts":[prompt]})
 
@@ -82,7 +70,6 @@ if prompt := st.chat_input("user: "):
             response = "<span style='color:red'>I cannot provide you answer as it is flagged as harmful</span>" 
         else:    
             response = "Sorry! some error occured. Can you please repeat that?"
-    t = timer.stop()
     st.chat_message("model").markdown(response , unsafe_allow_html=True)
     st.session_state.messages.append({"role":"model" , "parts":[response]})
 
