@@ -2,19 +2,20 @@ name: Run Python Script
 
 on:
   push:
-    branches: [ main ]
-env:
-  API_KEY: ${{ secrets.GEMINI_API_KEY }} 
+    branches: [main]
+
 jobs:
   run_python:
     runs-on: ubuntu-latest
+    env:
+      API_KEY: ${{ secrets.GEMINI_API_KEY }}  # Move this line under the 'env' section within 'jobs'
     steps:
       - uses: actions/checkout@v3
 
       - name: Set up Python 3.11.2
         uses: actions/setup-python@v3
         with:
-          python-version: '3.11.2' 
+          python-version: '3.11.2'
 
       - name: Install dependencies
         run: pip install -r requirements.txt
