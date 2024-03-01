@@ -10,12 +10,7 @@ class BlockedPromptException(Exception):
 class StopCandidateException(Exception):
     pass
 
-
-try:
-    API = os.environ["API_KEY"]
-except KeyError:
-    print("Error: API_KEY not found in environment variables.")
-    API = None  # Set a default value or handle the missing API key case appropriately
+API = os.environ["API_KEY"]
 
 print(API)
 genai.configure(api_key=API)
