@@ -12,7 +12,6 @@ class StopCandidateException(Exception):
 
 API = st.secrets["GEMINI_API_KEY"]
 
-print(API)
 genai.configure(api_key=API)
 
 # Set up the model
