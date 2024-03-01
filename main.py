@@ -3,8 +3,6 @@ import google.generativeai.generative_models as gen
 import streamlit as st
 import os
 
-
-
 class BlockedPromptException(Exception):
     pass
 
@@ -14,6 +12,7 @@ class StopCandidateException(Exception):
 
 
 API = os.environ.get("GEMINI_API_KEY")
+print(API)
 genai.configure(api_key=API)
 
 # Set up the model
