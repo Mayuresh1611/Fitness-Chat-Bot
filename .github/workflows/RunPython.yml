@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
 env:
-  API_KEY: ${{ vars.GEMINI_API_KEY }} 
+  API_KEY: ${{ secrets.GEMINI_API_KEY }} 
 jobs:
   run_python:
     runs-on: ubuntu-latest
